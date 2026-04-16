@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-                             http://maven.apache.org/maven-v4_0_0.xsd">
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- Project coordinates -->
+    <!-- Project Info -->
     <groupId>com.example</groupId>
     <artifactId>SauceDemoFirefoxSelenium</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -14,18 +14,29 @@
 
     <!-- Dependencies -->
     <dependencies>
-        <!-- Selenium Java -->
+
+        <!-- Selenium -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>4.29.0</version>
         </dependency>
+
+        <!-- JUnit (REQUIRED for Jenkins test reports) -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
-    <!-- Build plugins -->
+    <!-- Build -->
     <build>
         <plugins>
-            <!-- Compiler plugin -->
+
+            <!-- Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -36,33 +47,27 @@
                 </configuration>
             </plugin>
 
-            <!-- Surefire plugin for running tests -->
+            <!-- Test Runner -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
             </plugin>
 
-            <!-- Jar plugin to specify main class -->
+            <!-- Optional: executable JAR (not required for Selenium tests) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>3.2.0</version>
                 <configuration>
                     <archive>
-                        <manifestEntries>
-                            <Main-Class>com.example.App</Main-Class>
-                        </manifestEntries>
+                        <manifest>
+                            <mainClass>com.example.App</mainClass>
+                        </manifest>
                     </archive>
                 </configuration>
             </plugin>
 
-            <!-- Exec plugin to run Java classes -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.0</version>
-            </plugin>
         </plugins>
     </build>
 

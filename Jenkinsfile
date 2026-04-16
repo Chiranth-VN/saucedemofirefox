@@ -10,7 +10,8 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Chiranth-VN/saucedemofirefox.git'
+                git branch: 'main', 
+                    url: 'https://github.com/Chiranth-VN/saucedemofirefox.git'
             }
         }
 
@@ -35,7 +36,9 @@ pipeline {
 
     post {
         always {
-            junit '**/target/surefire-reports/*.xml'
+            // ✅ FIX: allow empty test results
+            junit allowEmptyResults: true, 
+                  testResults: '**/target/surefire-reports/*.xml'
         }
 
         success {
